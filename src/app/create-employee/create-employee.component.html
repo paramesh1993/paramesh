@@ -1,0 +1,43 @@
+<h3>Create Employee</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">First Name</label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.firstName" name="firstName">
+    </div>
+     <div class="form-group">
+      <label for="name">Last Name</label>
+      <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastName" name="lastName">
+    </div>
+    <div class="form-group">
+      <label for="name">email</label>
+      <input type="text" class="form-control" id="emailId" name="emailId" [(ngModel)]="employee.emailId">
+    </div>
+
+   <div class="form-group">
+    <label for="orders">Order</label>
+    <select  id="orders" name="orders" [(ngModel)]="employee.orders">
+    <option *ngFor="let order of orders; let i = index" [value]="orders[i].id">
+      {{orders[i].name}}
+    </option>
+    </select>
+    </div>
+
+   <div class="form-group">
+     <label for="payments">payments</label>
+     <select id="payments" name="payments" [(ngModel)]="employee.payments">
+     <option *ngFor="let payment of payments; let i = index" [value]="payments[i].id">
+       {{payments[i].name}}
+     </option>
+     </select>
+    </div> 
+
+
+    <button type="submit" (click)="onNavToOrderDetails()" routerlink="['/employees']"  class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>
